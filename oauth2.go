@@ -209,6 +209,8 @@ func (t *Transport) Refresh() error {
 func (t *Transport) updateToken(tok *Token, v url.Values) error {
 	v.Set("client_id", t.ClientId)
 	v.Set("client_secret", t.ClientSecret)
+	v.Set("appid", t.ClientId)      //TODO 微信的参数名称
+	v.Set("secret", t.ClientSecret) //TODO 微信使用的secret
 	r, err := (&http.Client{Transport: t.transport()}).PostForm(t.TokenURL, v)
 	if err != nil {
 		return err

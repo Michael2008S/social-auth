@@ -32,6 +32,7 @@ const (
 	SocialQQ
 	SocialDropbox
 	SocialFacebook
+	SocialWeixin
 	endType
 )
 
@@ -97,7 +98,7 @@ func (e *SocialTokenField) RawValue() interface{} {
 type UserSocial struct {
 	Id       int
 	Uid      int              `orm:"index"`
-	Identify string           `orm:"size(200)"`
+	Identify string           `orm:"index:size(200)"`
 	Type     SocialType       `orm:"index"`
 	Data     SocialTokenField ``
 }

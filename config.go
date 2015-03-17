@@ -79,6 +79,7 @@ func (c *Config) AuthCodeURL(state string) string {
 	values := url.Values{
 		"response_type": {"code"},
 		"client_id":     {c.ClientId},
+		"appid":         {c.ClientId}, //TODO 微信的appid
 		"redirect_uri":  {c.RedirectURL},
 		"state":         {state},
 	}

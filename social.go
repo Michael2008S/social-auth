@@ -200,7 +200,7 @@ func (this *SocialAuth) OAuthAccess(ctx *context.Context) (redirect string, user
 	} else if tok.IsEmpty() {
 		failedErr = fmt.Errorf("empty access token")
 	} else {
-
+		fmt.Println("OAuthAccess_Token:", tok.AccessToken, tok.Expiry, tok.RefreshToken, tok.TokenType, tok.Extra) // TODO 输出token调试信息
 		// check
 		var uSocial = UserSocial{}
 		if ok, err := p.CanConnect(tok, &uSocial); ok {
@@ -278,6 +278,9 @@ func (this *SocialAuth) ConnectAndLogin(ctx *context.Context, socialType SocialT
 	if err := tk.SetRaw(value); err != nil {
 		return "", nil, err
 	}
+
+	fmt.Println("ConnectAndLogin_Token_val:", value)                                                          // TODO
+	fmt.Println("ConnectAndLogin_Token:", tk.AccessToken, tk.Expiry, tk.RefreshToken, tk.TokenType, tk.Extra) //TODO
 
 	var p Provider
 	if p, _ = GetProviderByType(socialType); p == nil {
